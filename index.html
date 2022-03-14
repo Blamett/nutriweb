@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aparecida Nutrição</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i class="fa-solid fa-bars" id="menuicon" ></i></button>
+        <p class="cabecalho__text-main" id="mainText">Home</p>
+        <button class="cabecalho__noti" aria-label="Theme"><i class="fa-solid fa-user-gear"></i></button>
+    </header>   
+
+    <nav class="menu-lateral" id="menu-lateral">
+        <a href="#" id="users" data-id="users_tab" data-nome="Usuários" class="menu-lateral__link menu-lateral__link--users"><i class="fa-solid fa-users"></i> </a>
+       
+        <a href="#" id="adduser" data-id="adduser_tab" data-nome="Adicionar Paciente" class="menu-lateral__link menu-lateral__link--adduser"><i class="fa-solid fa-user-plus"></i></a>
+        <a href="#" id="calendar" data-id="calendar_tab" data-nome="Editar Paciente" class="menu-lateral__link menu-lateral__link--calendar"><i class="fa-solid fa-user-pen"></i></a>
+        
+    </nav>
+    
+    <main>
+
+
+        
+        <div class="tab" id="users_tab" >
+
+            <label for="filtrar-tabela" id="filtrar-tabela2">Filtre:</label>
+            <input type="text" name="filtro" id="filtrar-tabela" placeholder="Digite o nome do paciente">
+            
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Peso(kg)</th>
+                        <th>Altura(m)</th>
+                        <th>Gordura
+                            Corporal
+                            (%)</th>
+                        <th>IMC</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-pacientes">
+                    
+                </tbody>
+            </table>
+
+            <button id="buscar-pacientes" class="botao bto-principal">Atualizar</button>
+
+        </div>
+
+
+        <div class="tab" id="adduser_tab" >
+            <section class="container">
+      
+        
+                <ul id="mensagens-erro"></ul>
+                <form id="form-adiciona">
+                    <div class="nometext">
+                        <label for="nome" >Nome:</label>
+                        <input id="nome" name="nome" type="text" placeholder="Nome do paciente" class="campo">
+                    </div>
+                    <div class="grupo">
+                        <label for="peso">Peso:</label>
+                        <input id="peso" name="peso" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+                    <div class="grupo">
+                        <label for="altura">Altura:</label>
+                        <input id="altura" name="altura" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+                    <div class="grupo">
+                        <label for="gordura">% de Gordura:</label>
+                        <input id="gordura" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+        
+                    <button id="adicionar-paciente" class="botao bto-principal">Adicionar</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="tab" id="calendar_tab">
+
+            <button id="buscar-pacientes2" class="botao bto-principal">Buscar</button>
+            <input type="text" name="filtro" id="filtrar-tabela3" placeholder="ID do paciente">
+
+            <section class="container">
+      
+               
+        
+                <ul id="mensagens-erro"></ul>
+  
+                
+                <form id="form-adiciona">
+                    <div class="nometext">
+                        <label for="nome" id="nome2" >Nome:</label>
+                        <input id="nomeGet" name="nome" type="text" placeholder="Nome do paciente" class="campo">
+                    </div>
+                    <div class="grupo">
+                        <label for="peso">Peso:</label>
+                        <input id="pesoGet" name="peso" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+                    <div class="grupo">
+                        <label for="altura">Altura:</label>
+                        <input id="alturaGet" name="altura" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+                    <div class="grupo">
+                        <label for="gordura">% de Gordura:</label>
+                        <input id="gorduraGet" type="text" placeholder="..." class="campo campo-medio">
+                    </div>
+        
+                    
+                </form>
+
+            </section>
+
+            <button id="atualizar-paciente" class="botao bto-principal">Atualizar</button>
+            <button id="remover-paciente" class="botao bto-principal">Remover</button>
+
+        </div>
+       
+
+    </main>
+
+
+   
+
+    <script src="js/jquery.js" ></script>
+    <script src="js/hide-toggle_menu.js" ></script>
+    <script src="js/active-item.js" ></script>
+    <script src="js/form.js"></script>
+    <script src="js/filtra.js" ></script>
+    <script src="js/calcula-imc.js"></script>
+    <script src="js/buscar-pacientes.js"></script>
+    <script src="js/burcar-por-id.js"></script>
+
+  
+
+    <script src="https://kit.fontawesome.com/370c856643.js" crossorigin="anonymous"></script>
+</body>
+
+
+</html>
