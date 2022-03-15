@@ -235,11 +235,11 @@ th{
 	background-color: lightcoral;
 }
 
-#mensagens-erro {
+#mensagens-erro, #mensagens-erroAtt {
 	color: red;
 }
 
-#mensagens-nice {
+#mensagens-niceAtt {
 	color:rgb(9, 255, 0);
 }
 

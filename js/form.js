@@ -11,6 +11,7 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
     var erros = validaPaciente(paciente);
 
+
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
 
