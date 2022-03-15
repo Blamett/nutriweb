@@ -52,19 +52,31 @@ function ProcessRequest()
 
 
 
-//----------- BOTAO ATUALIZAR--------------\\
+//----------- BOTAO DELETAR--------------\\
 
 
 
 botaoRemover.addEventListener("click", function() {
+    DeleteCustomerInfo()
 
-});
+        document.getElementById("nomeGet").value = 'Cliente removido';
+        document.getElementById("pesoGet").value = '';
+        document.getElementById("alturaGet").value = '';
+        document.getElementById("gorduraGet").value = '';  
+}); 
 
 function DeleteCustomerInfo()
 {
     var CustomerNumber = document.getElementById( "filtrar-tabela3" ).value;
     var Url = "//localhost:3000/clientes/" + CustomerNumber;
 
+    $.ajax({
+        url : Url,
+        method : 'delete',
+        data : {
+           id: CustomerNumber
+        }
+   })
 
 }
 
