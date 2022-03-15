@@ -42,6 +42,25 @@ body{
     transition: 0.25s;
 }
 
+.menu-lateralDireito{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #15191C;
+    width: 100vw;
+    height: 95vh;
+
+    position: fixed;
+    bottom: 0vw;
+    right: -100vw;
+    transition: 0.25s;
+}
+
+.menu-lateralDireito.ativo{
+    right: 0;
+    transition: 0.25s;
+}
+
 .menu-principal{
     display: flex;
     flex-direction: column;
@@ -168,8 +187,6 @@ th{
     text-align: center;
 	border-bottom: 3px solid;
 	font-size: 0.8em;
-	cursor: pointer;
-	margin: 0;
 	margin-top: -3px;
 	color: #fff;
 	background-color:#0c8cd3;
@@ -178,9 +195,10 @@ th{
     height: 45px;
     top: 40px; 
     clear: both;
-    margin: 15px 0px;
-    position: absolute;
-    right: 10px;
+    margin-left: 5px;
+    margin-top: 20px;
+	margin-bottom: 20px;
+    
 }
 
 
@@ -291,8 +309,6 @@ th{
     text-align: center;
 	border-bottom: 3px solid;
 	font-size: 0.8em;
-	cursor: pointer;
-	margin: 0;
 	margin-top: -3px;
 	color: #fff;
 	background-color:#0c8cd3;
@@ -301,10 +317,29 @@ th{
     height: 45px;
     top: 40px; 
     clear: both;
-    margin: 15px 0px;
-    position: absolute;
-    left: 250px;
-    right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+
+}
+
+#user_img{
+    
+    margin-top: 20px;
+    border-radius: 80px;
+    justify-content: center;
+    width: 150px;
+    height: 150px
+}
+
+#user_name, #user_profissao{
+    margin-top: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+#user_profissao{
+    font-style: italic;
+    color:rgba(255, 255, 255, 0.418);
 }
 
 

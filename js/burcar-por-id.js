@@ -47,7 +47,8 @@ function ProcessRequest()
     }
     else if(xmlHttp.status == 404)
     {
-        document.getElementById("nomeGet").value = 'ID NÃO EXISTE';
+        mensagensErro.innerHTML = "ID não encontrado";
+        document.getElementById("nomeGet").value = '';
         document.getElementById("pesoGet").value = '';
         document.getElementById("alturaGet").value = '';
         document.getElementById("gorduraGet").value = '';  
@@ -102,6 +103,7 @@ botaoAtualizar.addEventListener("click", function() {
     var mensagensErro = document.querySelector("#mensagens-erroAtt");
     var CustomerNumber = document.getElementById( "filtrar-tabela3" ).value;
 
+
     if (errosAtt.length > 0) {
         exibeMensagensDeErroAtt(errosAtt);
 
@@ -138,6 +140,7 @@ botaoAtualizar.addEventListener("click", function() {
     function validaPaciente(pacienteAtt) {
 
         var errosAtt = [];
+
     
         if (pacienteAtt.nome.length == 0) {
             errosAtt.push("O nome não pode ser em branco");
