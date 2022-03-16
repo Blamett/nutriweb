@@ -4,13 +4,10 @@ var botaoRemover = document.getElementById("remover-paciente")
 var mensagensNice = document.querySelector("#mensagens-niceAtt");
 var mensagensErro = document.querySelector("#mensagens-erroAtt");
 
-
 //----------- BOTAO BUSCAR--------------\\
 
 
-
 botaoBuscar.addEventListener("click", function() {
-
 
     GetCustomerInfo()
     ProcessRequest()
@@ -18,7 +15,6 @@ botaoBuscar.addEventListener("click", function() {
     mensagensErro.innerHTML = "";
 
 }); 
-
 
 var xmlHttp = null;
 
@@ -56,9 +52,7 @@ function ProcessRequest()
 }
 
 
-
 //----------- BOTAO DELETAR--------------\\
-
 
 
 botaoRemover.addEventListener("click", function() {
@@ -90,9 +84,7 @@ function DeleteCustomerInfo()
 }
 
 
-
 //----------- BOTAO ATUALIZAR--------------\\
-
 
 
 botaoAtualizar.addEventListener("click", function() {
@@ -103,13 +95,11 @@ botaoAtualizar.addEventListener("click", function() {
     var mensagensErro = document.querySelector("#mensagens-erroAtt");
     var CustomerNumber = document.getElementById( "filtrar-tabela3" ).value;
 
-
     if (errosAtt.length > 0) {
         exibeMensagensDeErroAtt(errosAtt);
 
         return;
     }
-
 
     atualizarCliente(pacienteAtt)
 
@@ -122,7 +112,6 @@ botaoAtualizar.addEventListener("click", function() {
     document.getElementById("alturaGet").value = '';
     document.getElementById("gorduraGet").value = '';  
 }); 
-
 
     function obtemPacienteDoFormularioAtt(formAtt) {
 

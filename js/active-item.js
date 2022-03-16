@@ -3,7 +3,6 @@ var adduserdiv = document.getElementById("adduser_tab")
 var calendardiv = document.getElementById("calendar_tab")
 
 
-
 $(".menu-lateral a").on("click", function(e) {
     
     $(".menu-lateral a.menu-lateral__link--ativo").removeClass("menu-lateral__link--ativo");
@@ -44,5 +43,4 @@ $(".menu-lateral a").on("click", function(e) {
     }
 
 });
-
 

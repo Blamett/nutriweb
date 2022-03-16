@@ -154,7 +154,6 @@ th{
 	margin-top: -3px;
 	color: #fff;
 	background-color:#0c8cd3;
- 
 	border-color: #04324c;
 	width: 40%; 
     clear: both;
@@ -188,9 +187,9 @@ th{
 	border-bottom: 3px solid;
 	font-size: 0.8em;
 	margin-top: -3px;
-	color: #fff;
-	background-color:#0c8cd3;
-	border-color: #04324c;
+	color: #000000;
+	background-color:#0cd373;
+	border-color: #044c25;
 	width: 25%;
     height: 45px;
     top: 40px; 
@@ -310,9 +309,9 @@ th{
 	border-bottom: 3px solid;
 	font-size: 0.8em;
 	margin-top: -3px;
-	color: #fff;
-	background-color:#0c8cd3;
-	border-color: #04324c;
+	color: #000000;
+	background-color:#0cd373;
+	border-color: #044c25;
 	width: 25%;
     height: 45px;
     top: 40px; 

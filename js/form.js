@@ -1,5 +1,3 @@
-
-
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
     botaoAdicionar.addEventListener("click", function(event) {
@@ -11,7 +9,6 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
     var erros = validaPaciente(paciente);
 
-
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
 
@@ -22,13 +19,9 @@ var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
     adiconarPacienteRequest(paciente)
 
-    
-
     form.reset();
 
-
 });
-
 
 function obtemPacienteDoFormulario(form) {
 
@@ -132,4 +125,3 @@ function adiconarPacienteRequest(paciente){
         dataType: "json"
       });
 }
-

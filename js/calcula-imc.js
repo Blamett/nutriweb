@@ -45,7 +45,7 @@ function calculaImc(peso, altura) {
 }
 
 function validaPeso(peso) {
-    return peso >= 0 && peso <= 1000
+    return peso >= 0 && peso <= 500
 }
 
 function validaAltura(altura) {
