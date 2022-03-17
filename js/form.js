@@ -1,7 +1,6 @@
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
     botaoAdicionar.addEventListener("click", function(event) {
-    event.preventDefault();
 
     var form = document.querySelector("#form-adiciona");
 
@@ -114,14 +113,7 @@ function adiconarPacienteRequest(paciente){
     $.ajax({
         type: "POST",
         url: "//localhost:3000/clientes",
-        data: {
-          "nome": `${paciente.nome}`,
-          "peso": `${paciente.peso}`,
-          "altura": `${paciente.altura}`,
-          "gordura": `${paciente.gordura}`,
-          "imc": `${paciente.imc}`
-        },
-
+        data: paciente,
         dataType: "json"
       });
 }
