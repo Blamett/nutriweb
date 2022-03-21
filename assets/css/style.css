@@ -1,9 +1,37 @@
 
-
-body{
+body{ 
     background-color: #1D232A;
     font-family: 'Open Sans', sans-serif;
     color: white
+}
+
+main{
+    padding-bottom: 70px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+table{
+	width: 100%;
+    align-items:center;
+    table-layout: fixed;
+    
+}
+
+td, th {
+	padding: .7em;
+	margin: 0;
+	border: 1px solid #ccc;
+    font-size: 13px;
+	text-align: center;
+}
+
+th{
+	font-weight: bold;
+    font-size: 10px;
 }
 
 .cabecalho{
@@ -20,8 +48,6 @@ body{
     font-size: 18px;
     color: #ffffff;
 }
-
-/*------------------------------------*/
 
 .menu-lateral{
     display: flex;
@@ -85,7 +111,6 @@ body{
     text-shadow: #52bf90 1px 0 10px;
 }
 
-
 .invisivel {
 	display: none;
 }
@@ -93,37 +118,6 @@ body{
 #cabecalho__menu{
     min-width: 16px;
     
-}
-
-/*------------------------------------*/
-
-main{
-    padding-bottom: 70px;
-}
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-
-table{
-	width: 100%;
-    align-items:center;
-    table-layout: fixed;
-    
-}
-
-td, th {
-	padding: .7em;
-	margin: 0;
-	border: 1px solid #ccc;
-    font-size: 13px;
-	text-align: center;
-}
-
-th{
-	font-weight: bold;
-    font-size: 10px;
 }
 
 #adicionar-paciente{
@@ -141,7 +135,6 @@ th{
     
     clear: both;
     margin: 10px 0px;
-
 }
 
 #atualizar-paciente{
@@ -197,9 +190,7 @@ th{
     margin-left: 5px;
     margin-top: 20px;
 	margin-bottom: 20px;
-    
 }
-
 
 #adicionar-paciente:active{
 	margin-top:0px;
@@ -210,7 +201,6 @@ th{
 #badicionar-paciente[disabled=disabled], #buscar-pacientes:disabled {
     background-color: gray;
 	border-color: darkgray;
-
 }
 
 .container{
@@ -256,7 +246,7 @@ th{
 	color: red;
 }
 
-#mensagens-niceAtt {
+#mensagens-successAtt {
 	color:rgb(9, 255, 0);
 }
 
@@ -318,7 +308,6 @@ th{
     clear: both;
     margin-left: 10px;
     margin-top: 20px;
-
 }
 
 #user_img{
@@ -340,9 +329,6 @@ th{
     font-style: italic;
     color:rgba(255, 255, 255, 0.418);
 }
-
-
-/*------------------------------------*/
 
 .tab {
     display: none;

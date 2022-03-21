@@ -1,63 +1,53 @@
-var botaoBuscar = document.querySelector("#buscar-pacientes2");
+var botaoBuscar = document.getElementById("buscar-pacientes2");
 var botaoAtualizar = document.getElementById("atualizar-paciente")
 var botaoRemover = document.getElementById("remover-paciente")
-var mensagensNice = document.querySelector("#mensagens-niceAtt");
-var mensagensErro = document.querySelector("#mensagens-erroAtt");
+var mensagensNice = document.getElementById("mensagens-successAtt");
+var mensagensErro = document.getElementById("mensagens-erroAtt");
 
 //----------- BOTAO BUSCAR--------------\\
 
-
 botaoBuscar.addEventListener("click", function () {
-
     getCustomerInfo()
     // processRequest()
     mensagensNice.innerHTML = "";
     mensagensErro.innerHTML = "";
-
 });
-
-var xmlHttp = null;
 
 function getCustomerInfo() {
     var customerNumber = document.getElementById("filtrar-tabela3").value;
     var url = "//localhost:3000/clientes/" + customerNumber;
 
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = processRequest;
-    xmlHttp.open("GET", url, true);
-    xmlHttp.send();
+    $.ajax({
+        type: "GET",   
+        url: url,   
+        async: true,
+        success : function(data) {
+
+            document.getElementById("nomeGet").value = data.nome;
+            document.getElementById("pesoGet").value = data.peso;
+            document.getElementById("alturaGet").value = data.altura;
+            document.getElementById("gorduraGet").value = data.gordura;
+        },
+        error:function() {
+            mensagensErro.innerHTML = "ID não encontrado";
+            document.getElementById("nomeGet").value = '';
+            document.getElementById("pesoGet").value = '';
+            document.getElementById("alturaGet").value = '';
+            document.getElementById("gorduraGet").value = '';
+        }
+
+    });
 }
-
-function processRequest() {
-    if (xmlHttp.readyState === XMLHttpRequest.DONE && xmlHttp.status === 200) {
-        var info = JSON.parse(xmlHttp.responseText)
-
-
-        document.getElementById("nomeGet").value = info.nome;
-        document.getElementById("pesoGet").value = info.peso;
-        document.getElementById("alturaGet").value = info.altura;
-        document.getElementById("gorduraGet").value = info.gordura;
-    }
-    else if (xmlHttp.status == 404) {
-        mensagensErro.innerHTML = "ID não encontrado";
-        document.getElementById("nomeGet").value = '';
-        document.getElementById("pesoGet").value = '';
-        document.getElementById("alturaGet").value = '';
-        document.getElementById("gorduraGet").value = '';
-    }
-}
-
 
 //----------- BOTAO DELETAR--------------\\
 
-
 botaoRemover.addEventListener("click", function () {
-    deleteCustomerInfo()
     var customerNumber = document.getElementById("filtrar-tabela3").value;
+
+    deleteCustomerInfo()
 
     mensagensNice.innerHTML = "";
     mensagensNice.innerHTML = `Cliente Removido ID:${customerNumber}`;
-
     document.getElementById("nomeGet").value = '';
     document.getElementById("pesoGet").value = '';
     document.getElementById("alturaGet").value = '';
@@ -95,7 +85,6 @@ botaoAtualizar.addEventListener("click", function () {
     atualizarCliente(pacienteAtt)
 
     mensagensErro.innerHTML = "";
-
     mensagensNice.innerHTML = "";
     mensagensNice.innerHTML = `Cliente Atualizado ID:${customerNumber}`;
     document.getElementById("nomeGet").value = '';
@@ -113,7 +102,6 @@ function obtemPacienteDoFormularioAtt(formAtt) {
         gordura: formAtt.gordura.value,
         imc: calculaImc(formAtt.peso.value, formAtt.altura.value)
     }
-
     return pacienteAtt;
 }
 
@@ -130,13 +118,13 @@ function exibeMensagensDeErroAtt(errosAtt) {
 
 function atualizarCliente(pacienteAtt) {
 
-    var CustomerNumber = document.getElementById("filtrar-tabela3").value;
-    var Url = "//localhost:3000/clientes/" + CustomerNumber;
+    var customerNumber = document.getElementById("filtrar-tabela3").value;
+    var url = "//localhost:3000/clientes/" + customerNumber;
 
     $.ajax({
 
         type: "PUT",
-        url: Url,
+        url: url,
         data: {
             "nome": `${pacienteAtt.nome}`,
             "peso": `${pacienteAtt.peso}`,
@@ -150,5 +138,4 @@ function atualizarCliente(pacienteAtt) {
         // complete: (...args) => console.log(args),
 
     });
-
 }

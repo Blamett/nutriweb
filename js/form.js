@@ -1,4 +1,4 @@
-var botaoAdicionar = document.querySelector("#adicionar-paciente");
+var botaoAdicionar = document.getElementById("adicionar-paciente");
 
     botaoAdicionar.addEventListener("click", function(event) {
 
@@ -31,7 +31,6 @@ function obtemPacienteDoFormulario(form) {
         gordura: form.gordura.value,
         imc: calculaImc(form.peso.value, form.altura.value)
     }
-
     return paciente;
 }
 
@@ -84,7 +83,6 @@ function validaPaciente(paciente) {
     if (!validaAltura(paciente.altura)) {
         erros.push("Altura é inválida");
     }
-
     return erros;
 }
 
@@ -106,7 +104,6 @@ function adicionaPacienteNaTabela(paciente) {
 
     var mensagensErro = document.querySelector("#mensagens-erro");
     mensagensErro.innerHTML = "";
-
 }
 
 function adiconarPacienteRequest(paciente){
@@ -115,5 +112,5 @@ function adiconarPacienteRequest(paciente){
         url: "//localhost:3000/clientes",
         data: paciente,
         dataType: "json"
-      });
+    });
 }
