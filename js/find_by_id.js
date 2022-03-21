@@ -8,7 +8,6 @@ var mensagensErro = document.getElementById("mensagens-erroAtt");
 
 botaoBuscar.addEventListener("click", function () {
     getCustomerInfo()
-    // processRequest()
     mensagensNice.innerHTML = "";
     mensagensErro.innerHTML = "";
 });
@@ -18,80 +17,112 @@ function getCustomerInfo() {
     var url = "//localhost:3000/clientes/" + customerNumber;
 
     $.ajax({
-        type: "GET",   
-        url: url,   
+        type: "GET",
+        url: url,
         async: true,
-        success : function(data) {
+        success: function (data) {
 
             document.getElementById("nomeGet").value = data.nome;
             document.getElementById("pesoGet").value = data.peso;
             document.getElementById("alturaGet").value = data.altura;
             document.getElementById("gorduraGet").value = data.gordura;
         },
-        error:function() {
+        error: function () {
             mensagensErro.innerHTML = "ID não encontrado";
             document.getElementById("nomeGet").value = '';
             document.getElementById("pesoGet").value = '';
             document.getElementById("alturaGet").value = '';
             document.getElementById("gorduraGet").value = '';
         }
-
     });
 }
 
 //----------- BOTAO DELETAR--------------\\
 
-botaoRemover.addEventListener("click", function () {
+botaoRemover.addEventListener("click", async function () {
     var customerNumber = document.getElementById("filtrar-tabela3").value;
 
-    deleteCustomerInfo()
+    if (await deleteCustomerInfo(customerNumber)) {
 
-    mensagensNice.innerHTML = "";
-    mensagensNice.innerHTML = `Cliente Removido ID:${customerNumber}`;
-    document.getElementById("nomeGet").value = '';
-    document.getElementById("pesoGet").value = '';
-    document.getElementById("alturaGet").value = '';
-    document.getElementById("gorduraGet").value = '';
+        mensagensNice.innerHTML = "";
+        mensagensNice.innerHTML = `Cliente Removido ID:${customerNumber}`;
+        document.getElementById("nomeGet").value = '';
+        document.getElementById("pesoGet").value = '';
+        document.getElementById("alturaGet").value = '';
+        document.getElementById("gorduraGet").value = '';
+    } else {
+        mensagensErro.innerHTML = "";
+        mensagensErro.innerHTML = `Houve um erro ao tentar remover o Cliente ID:${customerNumber}`;
+    }
 });
 
-function deleteCustomerInfo() {
-    var customerNumber = document.getElementById("filtrar-tabela3").value;
-    var url = "//localhost:3000/clientes/" + customerNumber;
-
-    $.ajax({
-        url: url,
-        method: 'delete',
-        data: {
-            id: customerNumber
-        }
-    });
+async function deleteCustomerInfo(customerNumber) {
+    return new Promise(resolve => {
+        var url = "//localhost:3000/clientes/" + customerNumber;
+        $.ajax({
+            url: url,
+            method: 'delete',
+            data: {
+                id: customerNumber
+            },
+            success: () => resolve(true),
+            error: () => resolve(false)
+        });
+    })
 }
 
 //----------- BOTAO ATUALIZAR--------------\\
 
-botaoAtualizar.addEventListener("click", function () {
-
-    var formAtt = document.querySelector("#form-adiciona-att");
-    var pacienteAtt = obtemPacienteDoFormularioAtt(formAtt);
-    var errosAtt = validaPaciente(pacienteAtt);
-    var mensagensErro = document.querySelector("#mensagens-erroAtt");
+botaoAtualizar.addEventListener("click", async function () {
+    let formAtt = document.querySelector("#form-adiciona-att");
+    let pacienteAtt = obtemPacienteDoFormularioAtt(formAtt);
+    let errosAtt = validaPaciente(pacienteAtt);
     var customerNumber = document.getElementById("filtrar-tabela3").value;
+    mensagensErro.innerHTML = "";
+    mensagensNice.innerHTML = "";
 
     if (errosAtt.length > 0) {
         exibeMensagensDeErroAtt(errosAtt);
         return;
     }
 
-    atualizarCliente(pacienteAtt)
+    if (await atualizarCliente(pacienteAtt))
+    {
+        atualizarCliente(pacienteAtt)
 
-    mensagensErro.innerHTML = "";
-    mensagensNice.innerHTML = "";
-    mensagensNice.innerHTML = `Cliente Atualizado ID:${customerNumber}`;
-    document.getElementById("nomeGet").value = '';
-    document.getElementById("pesoGet").value = '';
-    document.getElementById("alturaGet").value = '';
-    document.getElementById("gorduraGet").value = '';
+        mensagensNice.innerHTML = `Paciente atualizado ID:${customerNumber}`;;
+        document.getElementById("nomeGet").value = '';
+        document.getElementById("pesoGet").value = '';
+        document.getElementById("alturaGet").value = '';
+        document.getElementById("gorduraGet").value = '';
+    }
+    else
+    {
+        mensagensErro.innerHTML = `Houve um erro ao atualizar o paciente ID:${customerNumber}`;
+    }
 });
+
+async function atualizarCliente(pacienteAtt) {
+    return new Promise(resolve => {
+        var customerNumber = document.getElementById("filtrar-tabela3").value;
+        var url = "//localhost:3000/clientes/" + customerNumber;
+
+        $.ajax({
+            type: "PUT",
+            url: url,
+            data: {
+                "nome": `${pacienteAtt.nome}`,
+                "peso": `${pacienteAtt.peso}`,
+                "altura": `${pacienteAtt.altura}`,
+                "gordura": `${pacienteAtt.gordura}`,
+                "imc": `${pacienteAtt.imc}`
+            },
+            dataType: "json",
+            success: () => resolve(true),
+            error: () => resolve(false)
+        })
+    })
+} 
 
 function obtemPacienteDoFormularioAtt(formAtt) {
 
@@ -113,29 +144,5 @@ function exibeMensagensDeErroAtt(errosAtt) {
         var li = document.createElement("li");
         li.textContent = erroAtt;
         ul.appendChild(li);
-    });
-}
-
-function atualizarCliente(pacienteAtt) {
-
-    var customerNumber = document.getElementById("filtrar-tabela3").value;
-    var url = "//localhost:3000/clientes/" + customerNumber;
-
-    $.ajax({
-
-        type: "PUT",
-        url: url,
-        data: {
-            "nome": `${pacienteAtt.nome}`,
-            "peso": `${pacienteAtt.peso}`,
-            "altura": `${pacienteAtt.altura}`,
-            "gordura": `${pacienteAtt.gordura}`,
-            "imc": `${pacienteAtt.imc}`
-        },
-
-        dataType: "json",
-
-        // complete: (...args) => console.log(args),
-
     });
 }

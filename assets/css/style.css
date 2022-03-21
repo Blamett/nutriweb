@@ -246,7 +246,7 @@ th{
 	color: red;
 }
 
-#mensagens-successAtt {
+#mensagens-successAtt, #mensagens-success{
 	color:rgb(9, 255, 0);
 }
 

@@ -1,12 +1,14 @@
+var mensagensErroAdd = document.getElementById("mensagens-erro");
+var mensagensNiceAdd = document.getElementById("mensagens-success");
+
 var botaoAdicionar = document.getElementById("adicionar-paciente");
 
-    botaoAdicionar.addEventListener("click", function(event) {
-
+botaoAdicionar.addEventListener("click", async function (event) {
     var form = document.querySelector("#form-adiciona");
-
     var paciente = obtemPacienteDoFormulario(form);
-
     var erros = validaPaciente(paciente);
+    mensagensErroAdd.innerHTML = ""
+    mensagensNiceAdd.innerHTML = ""
 
     if (erros.length > 0) {
         exibeMensagensDeErro(erros);
@@ -14,9 +16,7 @@ var botaoAdicionar = document.getElementById("adicionar-paciente");
         return;
     }
 
-    adicionaPacienteNaTabela(paciente);
-
-    adiconarPacienteRequest(paciente)
+    await adiconarPacienteRequest(paciente)
 
     form.reset();
 
@@ -90,7 +90,7 @@ function exibeMensagensDeErro(erros) {
     var ul = document.querySelector("#mensagens-erro");
     ul.innerHTML = "";
 
-    erros.forEach(function(erro) {
+    erros.forEach(function (erro) {
         var li = document.createElement("li");
         li.textContent = erro;
         ul.appendChild(li);
@@ -106,11 +106,21 @@ function adicionaPacienteNaTabela(paciente) {
     mensagensErro.innerHTML = "";
 }
 
-function adiconarPacienteRequest(paciente){
+async function adiconarPacienteRequest(paciente) {
+
     $.ajax({
         type: "POST",
         url: "//localhost:3000/clientes",
         data: paciente,
-        dataType: "json"
+        dataType: "json",
+        success: (d) => {
+            console.log("sucesso",d);
+            mensagensNiceAdd.innerHTML = "Paciente Adicionado"
+        },
+        error: (e) => {
+            console.log("error",e)
+            mensagensErroAdd.innerHTML = "Houve um erro ao adicionar o paciente"
+        }
     });
+
 }
